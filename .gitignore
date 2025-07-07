@@ -1,0 +1,15 @@
+# Python
+__pycache__/
+*.pyc
+
+# 가상환경
+venv/
+.env
+
+# SQLite DB (개발용)
+db.sqlite3
+
+# OS/IDE
+.DS_Store
+.vscode/
+.idea/ 

@@ -1,0 +1,31 @@
+{% extends 'projects/base.html' %}
+
+{% block title %}평가 결과{% endblock %}
+
+{% block content %}
+<h1>평가 결과</h1>
+
+{% if projects %}
+    <table style="width: 100%; border-collapse: collapse;">
+        <tr style="background: #f0f0f0;">
+            <th style="border: 1px solid #ddd; padding: 8px;">순위</th>
+            <th style="border: 1px solid #ddd; padding: 8px;">프로젝트</th>
+            <th style="border: 1px solid #ddd; padding: 8px;">평균 평점</th>
+            <th style="border: 1px solid #ddd; padding: 8px;">평가 수</th>
+        </tr>
+        {% for project in projects %}
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">{{ forloop.counter }}</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">
+                <strong>{{ project.title }}</strong><br>
+                <small>{{ project.description|truncatewords:10 }}</small>
+            </td>
+            <td style="border: 1px solid #ddd; padding: 8px;">{{ project.average_rating|floatformat:1 }}</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">{{ project.total_ratings }}명</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% else %}
+    <p>등록된 프로젝트가 없습니다.</p>
+{% endif %}
+{% endblock %} 

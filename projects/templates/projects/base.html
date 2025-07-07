@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}프로젝트 평가{% endblock %}</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; }
+        .nav { background: #f0f0f0; padding: 10px; margin-bottom: 20px; }
+        .nav a { margin-right: 15px; text-decoration: none; color: #333; }
+        .container { max-width: 800px; margin: 0 auto; }
+        .card { border: 1px solid #ddd; padding: 15px; margin: 10px 0; }
+        .btn { background: #007bff; color: white; padding: 8px 16px; text-decoration: none; border: none; cursor: pointer; }
+        .btn:hover { background: #0056b3; }
+        .rating { color: #ffc107; }
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <a href="{% url 'projects:project_list' %}">프로젝트 목록</a>
+        <a href="{% url 'projects:project_results' %}">결과</a>
+        <a href="/admin/">관리자</a>
+    </div>
+
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html> 

@@ -1,0 +1,36 @@
+{% extends 'projects/base.html' %}
+
+{% block title %}{{ project.title }}{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h1>{{ project.title }}</h1>
+    <div class="rating">
+        평점: {{ project.average_rating|floatformat:1 }} ({{ project.total_ratings }}명 평가)
+    </div>
+    <p>{{ project.description|linebreaks }}</p>
+</div>
+
+<div class="card">
+    <h3>평가하기</h3>
+    <form method="post" action="{% url 'projects:rate_project' project.id %}">
+        {% csrf_token %}
+        <p>
+            <label>평점: </label>
+            <select name="score" required>
+                <option value="">선택</option>
+                <option value="1">1점</option>
+                <option value="2">2점</option>
+                <option value="3">3점</option>
+                <option value="4">4점</option>
+                <option value="5">5점</option>
+            </select>
+        </p>
+        <p>
+            <label>코멘트: </label><br>
+            <textarea name="comment" rows="3" cols="50"></textarea>
+        </p>
+        <button type="submit" class="btn">평가 제출</button>
+    </form>
+</div>
+{% endblock %} 

@@ -1,0 +1,22 @@
+{% extends 'projects/base.html' %}
+
+{% block title %}프로젝트 목록{% endblock %}
+
+{% block content %}
+<h1>프로젝트 목록</h1>
+
+{% if projects %}
+    {% for project in projects %}
+    <div class="card">
+        <h3>{{ project.title }}</h3>
+        <p>{{ project.description|truncatewords:20 }}</p>
+        <div class="rating">
+            평점: {{ project.average_rating|floatformat:1 }} ({{ project.total_ratings }}명 평가)
+        </div>
+        <a href="{% url 'projects:project_detail' project.id %}" class="btn" style="margin-top: 10px; display: inline-block;">평가하기</a>
+    </div>
+    {% endfor %}
+{% else %}
+    <p>등록된 프로젝트가 없습니다.</p>
+{% endif %}
+{% endblock %} 
