@@ -13,6 +13,24 @@
         .btn { background: #007bff; color: white; padding: 8px 16px; text-decoration: none; border: none; cursor: pointer; }
         .btn:hover { background: #0056b3; }
         .rating { color: #ffc107; }
+        .toast-message {
+          position: fixed;
+          top: 30px;
+          right: 30px;
+          min-width: 220px;
+          background: #323232;
+          color: #fff;
+          padding: 16px 24px;
+          border-radius: 8px;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+          z-index: 9999;
+          opacity: 0.95;
+          font-size: 1rem;
+          animation: fadeout 0.5s 2.5s forwards;
+        }
+        @keyframes fadeout {
+          to { opacity: 0; visibility: hidden; }
+        }
     </style>
 </head>
 <body>
@@ -26,5 +44,21 @@
         {% block content %}
         {% endblock %}
     </div>
+
+    {% if messages %}
+      <div id="toast-container">
+        {% for message in messages %}
+          <div class="toast-message{% if message.tags %} {{ message.tags }}{% endif %}">
+            {{ message }}
+          </div>
+        {% endfor %}
+      </div>
+      <script>
+        setTimeout(function() {
+          var toast = document.getElementById('toast-container');
+          if (toast) toast.style.display = 'none';
+        }, 3000);
+      </script>
+    {% endif %}
 </body>
 </html> 

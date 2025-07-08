@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Project, Rating
+from django.contrib import messages
 
 def project_list(request):
     projects = Project.objects.all()
@@ -22,6 +23,7 @@ def rate_project(request, project_id):
                 score=int(score),
                 comment=comment
             )
+            messages.success(request, '프로젝트 평가가 등록되었습니다.')
             return redirect('projects:project_results')
     
     return redirect('projects:project_detail', project_id=project_id)
